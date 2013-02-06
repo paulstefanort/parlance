@@ -106,15 +106,15 @@ class Parlance
 		@processed_words = @processed_words.sort_by { |w, word| word[:count] }.reverse
 
 		# output
-		puts "Word        |      Count"
-		puts "------------------------"
+		puts "Word            Structure                    Count"
+		puts "--------------------------------------------------"
 		@processed_words.each do |w, word|
-			printf "%-20s %s\n", word[:word], word[:count].to_s
+			printf "%-15s %-30s %-10s\n", word[:word], word[:structure], word[:count].to_s
 		end
 
 		puts "\n\n"
 
-		puts "Letter | Count"
+		puts "Letter   Count"
 		puts "--------------"
 		@letters.each do |c, letter|
 			printf "%-9s %s\n", letter[:letter], letter[:count].to_s
