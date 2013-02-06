@@ -110,8 +110,6 @@ class Parlance
 		puts "------------------------"
 		@processed_words.each do |w, word|
 			printf "%-20s %s\n", word[:word], word[:count].to_s
-#			puts word[:word] + "           " + word[:count].to_s
-			#puts processed_word[:word].to_s + "          " + processed_word[:count].to_s
 		end
 
 		puts "\n\n"
