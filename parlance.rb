@@ -13,6 +13,7 @@ class Parlance
 		puts "Processing text."
 
 		@words = {}
+		@letters = {}
 		# remove punctuation from @text
 		punctuation = ["\\.", "\\-", "\\?", "\\!", "\\@", "[']", '\\"', "\\,", "\\(", "\\)", "\\;", "\\:"]
 		punctuation_regex = Regexp.new(punctuation.map{ |s| "(#{s})" }.join("|"))
@@ -77,6 +78,17 @@ class Parlance
 		end
 
 		@raw_words.each do |raw_word|
+			# process letters in raw_word
+			raw_word.each_char do |c|
+				if @letters.has_key?(c)
+					@letter = @letters[c]
+					@letter[:count] += 1
+				else
+					@letter = {:letter => c, :count => 1}
+					@letters[c] = @letter
+				end
+			end
+
 			# process raw_word
 			if @processed_words.has_key?(raw_word)
 				@processed_word = @processed_words[raw_word]
@@ -86,6 +98,9 @@ class Parlance
 				@processed_words[raw_word] = @processed_word
 			end
 		end
+
+		# sort letters in descending order of frequency
+		@letters = @letters.sort_by { |c, letter| letter[:count] }.reverse
 
 		# sort words in descending order of frequency
 		@processed_words = @processed_words.sort_by { |w, word| word[:count] }.reverse
@@ -97,6 +112,14 @@ class Parlance
 			printf "%-20s %s\n", word[:word], word[:count].to_s
 #			puts word[:word] + "           " + word[:count].to_s
 			#puts processed_word[:word].to_s + "          " + processed_word[:count].to_s
+		end
+
+		puts "\n\n"
+
+		puts "Letter | Count"
+		puts "--------------"
+		@letters.each do |c, letter|
+			printf "%-9s %s\n", letter[:letter], letter[:count].to_s
 		end
 	end
 end
