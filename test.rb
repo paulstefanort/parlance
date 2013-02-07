@@ -7,6 +7,8 @@ consonant_clusters = "th nt ng nt st wz gh nk wh tt sh ld ry"
 # load text (John 1-4 ESV)
 text = File.open("test.txt", "rb").read
 
+allowed_words = "a whitelist of words can be used to ensure that vocabulary matches the pool of available terms at or in beginning"
+
 p = Parlance.new
 
 # initialize parser
@@ -15,6 +17,7 @@ p.vowel_clusters = vowel_clusters.split(" ")
 p.consonants = consonants.split(" ")
 p.consonant_clusters = consonant_clusters.split(" ")
 p.text = text
+p.allowed_words = allowed_words.split(" ")
 
 # analyze text
 p.process_text

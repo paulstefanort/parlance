@@ -7,7 +7,7 @@ class String
 end
 
 class Parlance
-	attr_accessor :vowels, :vowel_clusters, :consonants, :consonant_clusters, :text, :words
+	attr_accessor :vowels, :vowel_clusters, :consonants, :consonant_clusters, :text, :words, :allowed_words
 
 	def process_text
 		puts "Processing text."
@@ -22,6 +22,7 @@ class Parlance
 		@text = @text.downcase
 		@raw_words = @text.split(" ")
 		@processed_words = {}
+		@disallowed_words = {}
 
 		def word_structure(word)
 			word_structure = word
@@ -97,6 +98,17 @@ class Parlance
 				@processed_word = {:word => raw_word, :count => 1, :structure => word_structure(raw_word)}
 				@processed_words[raw_word] = @processed_word
 			end
+
+			# process invalid words
+			unless @allowed_words.include?(raw_word)
+				if @disallowed_words.has_key?(raw_word)
+					@disallowed_word = @disallowed_words[raw_word]
+					@disallowed_word[:count] += 1
+				else
+					@disallowed_word = {:word => raw_word, :count => 1, :structure => word_structure(raw_word)}
+					@disallowed_words[raw_word] = @disallowed_word
+				end
+			end
 		end
 
 		# sort letters in descending order of frequency
@@ -104,11 +116,25 @@ class Parlance
 
 		# sort words in descending order of frequency
 		@processed_words = @processed_words.sort_by { |w, word| word[:count] }.reverse
+		@disallowed_words = @disallowed_words.sort_by { |w, word| word[:count] }.reverse
+
+		# remove duplicates from allowed words
+		@allowed_words = @allowed_words.uniq
 
 		# output
+		puts "Words:"
 		puts "Word            Structure                    Count"
 		puts "--------------------------------------------------"
 		@processed_words.each do |w, word|
+			printf "%-15s %-30s %-10s\n", word[:word], word[:structure], word[:count].to_s
+		end
+
+		puts "\n\n"
+
+		puts "Disallowed Words:"
+		puts "Word            Structure                    Count"
+		puts "--------------------------------------------------"
+		@disallowed_words.each do |w, word|
 			printf "%-15s %-30s %-10s\n", word[:word], word[:structure], word[:count].to_s
 		end
 
