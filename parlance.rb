@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class String
 	# add starts_with?
 	def starts_with?(prefix)
@@ -7,7 +9,7 @@ class String
 end
 
 class Parlance
-	attr_accessor :vowels, :vowel_clusters, :consonants, :consonant_clusters, :text, :words, :allowed_words
+	attr_accessor :vowels, :vowel_clusters, :consonants, :consonant_clusters, :text, :words, :allowed_words, :punctuation_marks
 
 	def process_text
 		puts "Processing text."
@@ -15,9 +17,7 @@ class Parlance
 		@words = {}
 		@letters = {}
 		# remove punctuation from @text
-		punctuation = ["\\.", "\\-", "\\?", "\\!", "\\@", "[']", '\\"', "\\,", "\\(", "\\)", "\\;", "\\:"]
-		punctuation_regex = Regexp.new(punctuation.map{ |s| "(#{s})" }.join("|"))
-		@text = @text.gsub(punctuation_regex, "")
+		@text = @text.gsub(Regexp.union(@punctuation_marks), "")
 		# convert all words to lowercase in @text
 		@text = @text.downcase
 		@raw_words = @text.split(" ")
