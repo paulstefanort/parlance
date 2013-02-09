@@ -22,6 +22,7 @@ class Parlance
 		@text = @text.downcase
 		@raw_words = @text.split(" ")
 		@processed_words = {}
+		@permitted_words = {}
 		@disallowed_words = {}
 
 		def word_structure(word)
@@ -100,7 +101,15 @@ class Parlance
 			end
 
 			# process invalid words
-			unless @allowed_words.include?(raw_word)
+			if @allowed_words.include?(raw_word)
+				if @permitted_words.has_key?(raw_word)
+					@permitted_word = @permitted_words[raw_word]
+					@permitted_word[:count] += 1
+				else
+					@permitted_word = {:word => raw_word, :count => 1, :structure => word_structure(raw_word)}
+					@permitted_words[raw_word] = @permitted_word
+				end
+			else
 				if @disallowed_words.has_key?(raw_word)
 					@disallowed_word = @disallowed_words[raw_word]
 					@disallowed_word[:count] += 1
@@ -116,16 +125,26 @@ class Parlance
 
 		# sort words in descending order of frequency
 		@processed_words = @processed_words.sort_by { |w, word| word[:count] }.reverse
+		@permitted_words = @permitted_words.sort_by { |w, word| word[:count] }.reverse
 		@disallowed_words = @disallowed_words.sort_by { |w, word| word[:count] }.reverse
 
 		# remove duplicates from allowed words
 		@allowed_words = @allowed_words.uniq
 
 		# output
-		puts "Words:"
+		puts "All Words:"
 		puts "Word            Structure                    Count"
 		puts "--------------------------------------------------"
 		@processed_words.each do |w, word|
+			printf "%-15s %-30s %-10s\n", word[:word], word[:structure], word[:count].to_s
+		end
+
+		puts "\n\n"
+
+		puts "Permitted Words:"
+		puts "Word            Structure                    Count"
+		puts "--------------------------------------------------"
+		@permitted_words.each do |w, word|
 			printf "%-15s %-30s %-10s\n", word[:word], word[:structure], word[:count].to_s
 		end
 
