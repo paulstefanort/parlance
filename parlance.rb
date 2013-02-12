@@ -10,6 +10,18 @@ class String
 	def ends_with?(suffix)
 		self[self.length-1] == suffix
 	end
+
+	def clean_up
+		# remove duplicate plus (++) signs
+		new_string = self.gsub(/\++/, "+")
+		if new_string.starts_with?("+")
+			new_string = new_string[1..new_string.length]
+		end
+		if new_string.ends_with?("+")
+			new_string = new_string[0..new_string.length-2]
+		end
+		new_string
+	end
 end
 
 class Parlance
@@ -39,15 +51,7 @@ class Parlance
 			@consonant_clusters.each do |consonant_cluster|
 				word_structure = word_structure.gsub(consonant_cluster, "+" + consonant_cluster + "+")
 			end
-			# remove duplicate plus (++) signs
-			word_structure = word_structure.gsub(/\++/, "+")
-			# remove leading and trailing plus (+) signs
-			if word_structure.starts_with?("+")
-				word_structure = word_structure[1..word_structure.length]
-			end
-			if word_structure.ends_with?("+")
-				word_structure = word_structure[0..word_structure.length-2]
-			end
+			word_structure = word_structure.clean_up
 
 			word_fragments = word_structure.split("+")
 			word_fragments.each_index do |index|
@@ -71,15 +75,7 @@ class Parlance
 				word_fragments[index] = word_fragment
 			end
 			word_structure = word_fragments.join("+")
-			# remove duplicate plus (++) signs
-			word_structure = word_structure.gsub(/\++/, "+")
-			# remove leading and trailing plus (+) signs
-			if word_structure.starts_with?("+")
-				word_structure = word_structure[1..word_structure.length]
-			end
-			if word_structure.ends_with?("+")
-				word_structure = word_structure[0..word_structure.length-2]
-			end
+			word_structure = word_structure.clean_up
 			return word_structure
 		end
 
