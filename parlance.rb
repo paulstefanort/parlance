@@ -6,6 +6,10 @@ class String
 		prefix = prefix.to_s
 		self[0, prefix.length] == prefix
 	end
+
+	def ends_with?(suffix)
+		self[self.length-1] == suffix
+	end
 end
 
 class Parlance
@@ -41,7 +45,7 @@ class Parlance
 			if word_structure.starts_with?("+")
 				word_structure = word_structure[1..word_structure.length]
 			end
-			if word_structure[word_structure.length-1] == "+"
+			if word_structure.ends_with?("+")
 				word_structure = word_structure[0..word_structure.length-2]
 			end
 
@@ -73,7 +77,7 @@ class Parlance
 			if word_structure.starts_with?("+")
 				word_structure = word_structure[1..word_structure.length]
 			end
-			if word_structure[word_structure.length-1] == "+"
+			if word_structure.ends_with?("+")
 				word_structure = word_structure[0..word_structure.length-2]
 			end
 			return word_structure
