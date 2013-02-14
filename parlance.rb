@@ -40,6 +40,10 @@ class Parlance
 		@processed_words = {}
 		@permitted_words = {}
 		@disallowed_words = {}
+		@processed_vowels = {}
+		@processed_vowel_clusters = {}
+		@processed_consontants = {}
+		@processed_consonant_clusters = {}
 
 		def word_structure(word)
 			word_structure = word
@@ -90,6 +94,11 @@ class Parlance
 					@letters[c] = @letter
 				end
 			end
+
+			# TODO: process vowels
+			# TODO: process vowel_clusters
+			# TODO: process consonants
+			# TODO: process consonant_clusters
 
 			# process raw_word
 			if @processed_words.has_key?(raw_word)
