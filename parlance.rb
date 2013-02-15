@@ -111,6 +111,18 @@ class Parlance
 			end
 
 			# TODO: process vowel_clusters
+			@vowel_clusters.each do |vowel_cluster|
+				if processed_word_structure.include?(vowel_cluster)
+					if @processed_vowel_clusters.has_key?(vowel_cluster)
+						@processed_vowel_cluster = @processed_vowel_clusters[vowel_cluster]
+						@processed_vowel_cluster[:count] += processed_word_structure.count(vowel_cluster)
+					else
+						@processed_vowel_cluster = {:vowel_cluster => vowel_cluster, :count => processed_word_structure.count(vowel_cluster)}
+						@processed_vowel_clusters[vowel_cluster] =  @processed_vowel_cluster
+					end
+				end
+			end
+
 			# TODO: process consonants
 			# TODO: process consonant_clusters
 
@@ -153,6 +165,9 @@ class Parlance
 
 		# sort vowels in descending order of frequency
 		@processed_vowels = @processed_vowels.sort_by { |v, vowel| vowel[:count] }.reverse
+
+		# sort vowel clusters in descending order of frequency
+		@processed_vowel_clusters = @processed_vowel_clusters.sort_by { |vc, vowel_cluster| vowel_cluster[:count] }.reverse
 
 		# remove duplicates from allowed words
 		@allowed_words = @allowed_words.uniq
@@ -197,6 +212,14 @@ class Parlance
 		puts "-------------"
 		@processed_vowels.each do |v, vowel|
 			printf "%-8s %s\n", vowel[:vowel], vowel[:count].to_s
+		end
+
+		puts "\n\n"
+
+		puts "Vowel Cluster   Count"
+		puts "---------------------"
+		@processed_vowel_clusters.each do |vc, vowel_cluster|
+			printf "%-17s %s\n", vowel_cluster[:vowel_cluster], vowel_cluster[:count].to_s
 		end
 	end
 end
