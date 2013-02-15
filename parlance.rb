@@ -95,7 +95,21 @@ class Parlance
 				end
 			end
 
+			processed_word_structure = word_structure(raw_word)
+
 			# TODO: process vowels
+			@vowels.each do |vowel|
+				if processed_word_structure.include?(vowel)
+					if @processed_vowels.has_key?(vowel)
+						@processed_vowel = @processed_vowels[vowel]
+						@processed_vowel[:count] += processed_word_structure.count(vowel)
+					else
+						@processed_vowel = {:vowel => vowel, :count => processed_word_structure.count(vowel)}
+						@processed_vowels[vowel] = @processed_vowel
+					end
+				end
+			end
+
 			# TODO: process vowel_clusters
 			# TODO: process consonants
 			# TODO: process consonant_clusters
@@ -105,7 +119,7 @@ class Parlance
 				@processed_word = @processed_words[raw_word]
 				@processed_word[:count] += 1
 			else
-				@processed_word = {:word => raw_word, :count => 1, :structure => word_structure(raw_word)}
+				@processed_word = {:word => raw_word, :count => 1, :structure => processed_word_structure}
 				@processed_words[raw_word] = @processed_word
 			end
 
@@ -115,7 +129,7 @@ class Parlance
 					@permitted_word = @permitted_words[raw_word]
 					@permitted_word[:count] += 1
 				else
-					@permitted_word = {:word => raw_word, :count => 1, :structure => word_structure(raw_word)}
+					@permitted_word = {:word => raw_word, :count => 1, :structure => processed_word_structure}
 					@permitted_words[raw_word] = @permitted_word
 				end
 			else
@@ -123,7 +137,7 @@ class Parlance
 					@disallowed_word = @disallowed_words[raw_word]
 					@disallowed_word[:count] += 1
 				else
-					@disallowed_word = {:word => raw_word, :count => 1, :structure => word_structure(raw_word)}
+					@disallowed_word = {:word => raw_word, :count => 1, :structure => processed_word_structure}
 					@disallowed_words[raw_word] = @disallowed_word
 				end
 			end
@@ -136,6 +150,9 @@ class Parlance
 		@processed_words = @processed_words.sort_by { |w, word| word[:count] }.reverse
 		@permitted_words = @permitted_words.sort_by { |w, word| word[:count] }.reverse
 		@disallowed_words = @disallowed_words.sort_by { |w, word| word[:count] }.reverse
+
+		# sort vowels in descending order of frequency
+		@processed_vowels = @processed_vowels.sort_by { |v, vowel| vowel[:count] }.reverse
 
 		# remove duplicates from allowed words
 		@allowed_words = @allowed_words.uniq
@@ -172,6 +189,14 @@ class Parlance
 		puts "--------------"
 		@letters.each do |c, letter|
 			printf "%-9s %s\n", letter[:letter], letter[:count].to_s
+		end
+
+		puts "\n\n"
+
+		puts "Vowel   Count"
+		puts "-------------"
+		@processed_vowels.each do |v, vowel|
+			printf "%-8s %s\n", vowel[:vowel], vowel[:count].to_s
 		end
 	end
 end
