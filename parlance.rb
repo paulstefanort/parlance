@@ -44,6 +44,7 @@ class Parlance
 		@processed_vowel_clusters = {}
 		@processed_consonants = {}
 		@processed_consonant_clusters = {}
+		@processed_chunks = {} 
 
 		def word_structure(word)
 			word_structure = word
@@ -198,6 +199,29 @@ class Parlance
 		# sort consonant clusters in descending order of frequency
 		@processed_consonant_clusters = @processed_consonant_clusters.sort_by { |cc, consonant_cluster| consonant_cluster[:count] }.reverse
 
+		# build master list of fragments
+		@processed_vowels.each do |v, vowel|
+			@processed_chunk = {:chunk => vowel[:vowel], :count => vowel[:count]}
+			@processed_chunks[vowel] = @processed_chunk
+		end
+
+		@processed_vowel_clusters.each do |vc, vowel_cluster|
+			@processed_chunk = {:chunk => vowel_cluster[:vowel_cluster], :count => vowel_cluster[:count]}
+			@processed_chunks[vowel_cluster] = @processed_chunk
+		end
+
+		@processed_consonants.each do |c, consonant|
+			@processed_chunk = {:chunk => consonant[:consonant], :count => consonant[:count]}
+			@processed_chunks[consonant] = @processed_chunk
+		end
+
+		@processed_consonant_clusters.each do |cc, consonant_cluster|
+			@processed_chunk = {:chunk => consonant_cluster[:consonant_cluster], :count => consonant_cluster[:count]}
+			@processed_chunks[consonant_cluster] = @processed_chunk
+		end
+
+		@processed_chunks = @processed_chunks.sort_by { |c, chunk| chunk[:count] }.reverse
+
 		# remove duplicates from allowed words
 		@allowed_words = @allowed_words.uniq
 
@@ -265,6 +289,14 @@ class Parlance
 		puts "-------------------------"
 		@processed_consonant_clusters.each do |cc, consonant_cluster|
 			printf "%-20s %s\n", consonant_cluster[:consonant_cluster], consonant_cluster[:count].to_s
+		end
+
+		puts "\n\n"
+
+		puts "Chunk               Count"
+		puts "-------------------------"
+		@processed_chunks.each do |c, chunk|
+			printf "%-20s %s\n", chunk[:chunk], chunk[:count].to_s
 		end
 	end
 end
