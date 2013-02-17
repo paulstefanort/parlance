@@ -63,11 +63,11 @@ class Parlance
 				word_fragment = word_fragments[index]
 				# skip if it matches a vowel cluster
 				if @vowel_clusters.include?(word_fragment)
-					break
+					next # proceed to next fragment
 				end
 				# skip if it matches a consonant cluster
 				if @consonant_clusters.include?(word_fragment)
-					break
+					next # proceed to text fragment
 				end
 				# otherwise break it up into vowels
 				@vowels.each do |vowel|
