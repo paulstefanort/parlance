@@ -3,7 +3,7 @@
 require './parlance'
 
 vowels = "a e i o u"
-vowel_clusters = "ae io au ei au ao ou ue ee ea"
+vowel_clusters = "ae io au ei au ao ou ue ee ea oo oi"
 consonants = "b c d f g h j k l m n p q r s t v w x y z"
 consonant_clusters = "th nt ng nt st wz gh nk wh tt sh ld ry"
 punctuation_marks = ". , - ? ! @ # $ % ^ & * + = ' \" \ / ( ) ; : - –"
