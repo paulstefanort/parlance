@@ -97,21 +97,9 @@ class Parlance
 			end
 
 			processed_word_structure = word_structure(raw_word)
+			original_processed_word_structure = processed_word_structure
 
-			# TODO: process vowels
-			@vowels.each do |vowel|
-				if processed_word_structure.include?(vowel)
-					if @processed_vowels.has_key?(vowel)
-						@processed_vowel = @processed_vowels[vowel]
-						@processed_vowel[:count] += processed_word_structure.count(vowel)
-					else
-						@processed_vowel = {:vowel => vowel, :count => processed_word_structure.count(vowel)}
-						@processed_vowels[vowel] = @processed_vowel
-					end
-				end
-			end
-
-			# TODO: process vowel_clusters
+			# process vowel_clusters first
 			@vowel_clusters.each do |vowel_cluster|
 				if processed_word_structure.include?(vowel_cluster)
 					if @processed_vowel_clusters.has_key?(vowel_cluster)
@@ -121,23 +109,27 @@ class Parlance
 						@processed_vowel_cluster = {:vowel_cluster => vowel_cluster, :count => processed_word_structure.count(vowel_cluster)}
 						@processed_vowel_clusters[vowel_cluster] =  @processed_vowel_cluster
 					end
+					# remove the counted vowel_cluster, preventing its characters from counting as vowels also
+					processed_word_structure = processed_word_structure.gsub(vowel_cluster, '')
 				end
 			end
 
-			# TODO: process consonants
-			@consonants.each do |consonant|
-				if processed_word_structure.include?(consonant)
-					if @processed_consonants.has_key?(consonant)
-						@processed_consonant = @processed_consonants[consonant]
-						@processed_consonant[:count] += processed_word_structure.count(consonant)
+			# process vowels second
+			@vowels.each do |vowel|
+				if processed_word_structure.include?(vowel)
+					if @processed_vowels.has_key?(vowel)
+						@processed_vowel = @processed_vowels[vowel]
+						@processed_vowel[:count] += processed_word_structure.count(vowel)
 					else
-						@processed_consonant = {:consonant => consonant, :count => processed_word_structure.count(consonant)}
-						@processed_consonants[consonant]= @processed_consonant
+						@processed_vowel = {:vowel => vowel, :count => processed_word_structure.count(vowel)}
+						@processed_vowels[vowel] = @processed_vowel
 					end
+					# remove the counted vowel
+					processed_word_structure = processed_word_structure.gsub(vowel, '')
 				end
 			end
 
-			# TODO: process consonant_clusters
+			# process consonant_clusters third
 			@consonant_clusters.each do |consonant_cluster|
 				if processed_word_structure.include?(consonant_cluster)
 					if @processed_consonant_clusters.has_key?(consonant_cluster)
@@ -147,15 +139,33 @@ class Parlance
 						@processed_consonant_cluster = {:consonant_cluster => consonant_cluster, :count => processed_word_structure.count(consonant_cluster)}
 						@processed_consonant_clusters[consonant_cluster] = @processed_consonant_cluster
 					end
+					# remove the counted consonant_cluster, preventing its characters from counting as consonants also
+					processed_word_structure = processed_word_structure.gsub(consonant_cluster, '')
 				end
 			end
+
+			# process consonants fourth
+			@consonants.each do |consonant|
+				if processed_word_structure.include?(consonant)
+					if @processed_consonants.has_key?(consonant)
+						@processed_consonant = @processed_consonants[consonant]
+						@processed_consonant[:count] += processed_word_structure.count(consonant)
+					else
+						@processed_consonant = {:consonant => consonant, :count => processed_word_structure.count(consonant)}
+						@processed_consonants[consonant]= @processed_consonant
+					end
+					# remove the counted consonant
+					processed_word_structure = processed_word_structure.gsub(consonant, '')
+				end
+			end
+
 
 			# process raw_word
 			if @processed_words.has_key?(raw_word)
 				@processed_word = @processed_words[raw_word]
 				@processed_word[:count] += 1
 			else
-				@processed_word = {:word => raw_word, :count => 1, :structure => processed_word_structure}
+				@processed_word = {:word => raw_word, :count => 1, :structure => original_processed_word_structure}
 				@processed_words[raw_word] = @processed_word
 			end
 
@@ -165,7 +175,7 @@ class Parlance
 					@permitted_word = @permitted_words[raw_word]
 					@permitted_word[:count] += 1
 				else
-					@permitted_word = {:word => raw_word, :count => 1, :structure => processed_word_structure}
+					@permitted_word = {:word => raw_word, :count => 1, :structure => original_processed_word_structure}
 					@permitted_words[raw_word] = @permitted_word
 				end
 			else
@@ -173,7 +183,7 @@ class Parlance
 					@disallowed_word = @disallowed_words[raw_word]
 					@disallowed_word[:count] += 1
 				else
-					@disallowed_word = {:word => raw_word, :count => 1, :structure => processed_word_structure}
+					@disallowed_word = {:word => raw_word, :count => 1, :structure => original_processed_word_structure}
 					@disallowed_words[raw_word] = @disallowed_word
 				end
 			end
