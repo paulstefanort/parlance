@@ -48,16 +48,17 @@ class Parlance
 
 		def word_structure(word)
 			word_structure = word
-			# go through vowels
+			# go through vowel clusters
 			@vowel_clusters.each do |vowel_cluster|
 				word_structure = word_structure.gsub(vowel_cluster, "+" + vowel_cluster + "+")
 			end
-			# go through consonants
+			# go through consonant clusters
 			@consonant_clusters.each do |consonant_cluster|
 				word_structure = word_structure.gsub(consonant_cluster, "+" + consonant_cluster + "+")
 			end
 			word_structure = word_structure.clean_up
 
+			# loop through word fragments evaluated from vowel clusters and consonant clusters
 			word_fragments = word_structure.split("+")
 			word_fragments.each_index do |index|
 				word_fragment = word_fragments[index]
@@ -81,7 +82,7 @@ class Parlance
 			end
 			word_structure = word_fragments.join("+")
 			word_structure = word_structure.clean_up
-			return word_structure
+			word_structure
 		end
 
 		@raw_words.each do |raw_word|
@@ -159,8 +160,7 @@ class Parlance
 				end
 			end
 
-
-			# process raw_word
+			# generate word counts
 			if @processed_words.has_key?(raw_word)
 				@processed_word = @processed_words[raw_word]
 				@processed_word[:count] += 1
@@ -169,7 +169,7 @@ class Parlance
 				@processed_words[raw_word] = @processed_word
 			end
 
-			# process invalid words
+			# process allowed and disallowed words
 			if @allowed_words.include?(raw_word)
 				if @permitted_words.has_key?(raw_word)
 					@permitted_word = @permitted_words[raw_word]
@@ -203,7 +203,7 @@ class Parlance
 		# sort vowel clusters in descending order of frequency
 		@processed_vowel_clusters = @processed_vowel_clusters.sort_by { |vc, vowel_cluster| vowel_cluster[:count] }.reverse
 
-		# sort vowels in descending order of frequency
+		# sort consonantsin descending order of frequency
 		@processed_consonants = @processed_consonants.sort_by { |c, consonant| consonant[:count] }.reverse
 
 		# sort consonant clusters in descending order of frequency
@@ -230,6 +230,7 @@ class Parlance
 			@processed_chunks[consonant_cluster] = @processed_chunk
 		end
 
+		# sort processed chunks in descending order of frequency
 		@processed_chunks = @processed_chunks.sort_by { |c, chunk| chunk[:count] }.reverse
 
 		# remove duplicates from allowed words
