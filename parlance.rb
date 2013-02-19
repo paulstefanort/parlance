@@ -34,6 +34,7 @@ class Parlance
 		@letters = {}
 		# remove punctuation from @text
 		@text = @text.gsub(Regexp.union(@punctuation_marks), "")
+		@text = @text.gsub(/\s+/, ' ') # remove extra spaces
 		# convert all words to lowercase in @text
 		@text = @text.downcase
 		@raw_words = @text.split(" ")
