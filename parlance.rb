@@ -25,11 +25,9 @@ class String
 end
 
 class Parlance
-	attr_accessor :vowels, :vowel_clusters, :consonants, :consonant_clusters, :text, :words, :allowed_words, :punctuation_marks
+	attr_accessor :vowels, :vowel_clusters, :consonants, :consonant_clusters, :text, :words, :allowed_words, :punctuation_marks, :processed_words, :permitted_words, :disallowed_words, :processed_vowels, :processed_vowel_clusters, :processed_consonants, :processed_consonant_clusters, :letters, :processed_chunks
 
 	def process_text
-		puts "Processing text."
-
 		@words = {}
 		@letters = {}
 		# remove punctuation from @text
@@ -237,78 +235,5 @@ class Parlance
 		# remove duplicates from allowed words
 		@allowed_words = @allowed_words.uniq
 
-		# output
-		puts "All Words:"
-		puts "Word            Structure                    Count"
-		puts "--------------------------------------------------"
-		@processed_words.each do |w, word|
-			printf "%-15s %-30s %-10s\n", word[:word], word[:structure], word[:count].to_s
-		end
-
-		puts "\n\n"
-
-		puts "Permitted Words:"
-		puts "Word            Structure                    Count"
-		puts "--------------------------------------------------"
-		@permitted_words.each do |w, word|
-			printf "%-15s %-30s %-10s\n", word[:word], word[:structure], word[:count].to_s
-		end
-
-		puts "\n\n"
-
-		puts "Disallowed Words:"
-		puts "Word            Structure                    Count"
-		puts "--------------------------------------------------"
-		@disallowed_words.each do |w, word|
-			printf "%-15s %-30s %-10s\n", word[:word], word[:structure], word[:count].to_s
-		end
-
-		puts "\n\n"
-
-		puts "Letter   Count"
-		puts "--------------"
-		@letters.each do |c, letter|
-			printf "%-9s %s\n", letter[:letter], letter[:count].to_s
-		end
-
-		puts "\n\n"
-
-		puts "Vowel   Count"
-		puts "-------------"
-		@processed_vowels.each do |v, vowel|
-			printf "%-8s %s\n", vowel[:vowel], vowel[:count].to_s
-		end
-
-		puts "\n\n"
-
-		puts "Vowel Cluster   Count"
-		puts "---------------------"
-		@processed_vowel_clusters.each do |vc, vowel_cluster|
-			printf "%-17s %s\n", vowel_cluster[:vowel_cluster], vowel_cluster[:count].to_s
-		end
-
-		puts "\n\n"
-
-		puts "Consonant   Count"
-		puts "-----------------"
-		@processed_consonants.each do |c, consonant|
-			printf "%-12s %s\n", consonant[:consonant], consonant[:count].to_s
-		end
-
-		puts "\n\n"
-
-		puts "Consonant Cluster   Count"
-		puts "-------------------------"
-		@processed_consonant_clusters.each do |cc, consonant_cluster|
-			printf "%-20s %s\n", consonant_cluster[:consonant_cluster], consonant_cluster[:count].to_s
-		end
-
-		puts "\n\n"
-
-		puts "Chunk               Count"
-		puts "-------------------------"
-		@processed_chunks.each do |c, chunk|
-			printf "%-20s %s\n", chunk[:chunk], chunk[:count].to_s
-		end
 	end
 end
