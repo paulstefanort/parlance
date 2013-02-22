@@ -21,3 +21,6 @@ Calling _process_text_ prints out results including this analysis:
 - number of occurrences of each allowed word
 - number of occurrences of each unauthorized word.
 - number of occurrences of each letter
+
+# Sample
+Run _test.rb_.
