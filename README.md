@@ -12,6 +12,7 @@ To use Parlance, specify these properties:
 - vowel_clusters (array)
 - consonants (array)
 - consonant_clusters (array)
+- punctuation_marks (array)
 - allowed_words (array)
 - text (string)
 
