@@ -16,7 +16,7 @@ To use Parlance, specify these properties:
 - allowed_words (array)
 - text (string)
 
-Calling _process_text_ prints out results including this analysis:
+Calling _process_text_ prints generates results including this analysis:
 - composition of the words in the text (specified as combinations of vowels, vowel clusters, consonants, and consonant clusters)
 - number of occurrences of each word
 - number of occurrences of each allowed word
