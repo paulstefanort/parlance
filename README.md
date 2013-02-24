@@ -20,7 +20,7 @@ Calling _process_text_ prints generates results including this analysis:
 - composition of the words in the text (specified as combinations of vowels, vowel clusters, consonants, and consonant clusters)
 - number of occurrences of each word
 - number of occurrences of each allowed word
-- number of occurrences of each unauthorized word.
+- number of occurrences of each unauthorized word
 - number of occurrences of each letter
 - number of occurrences of each vowel (stand-alone occurrences, not including instances within clusters)
 - number of occurrences of each vowel cluster
