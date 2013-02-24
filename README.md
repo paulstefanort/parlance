@@ -22,6 +22,10 @@ Calling _process_text_ prints generates results including this analysis:
 - number of occurrences of each allowed word
 - number of occurrences of each unauthorized word.
 - number of occurrences of each letter
+- number of occurrences of each vowel (stand-alone occurrences, not including instances within clusters)
+- number of occurrences of each vowel cluster
+- number of occurrences of each consonant (stand-alone occurrences, not including instances within clusters)
+- number of occurrences of each consonant cluster
 
 # Sample
 Run _test.rb_.
