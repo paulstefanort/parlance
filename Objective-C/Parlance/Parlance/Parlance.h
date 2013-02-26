@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSString+Parlance.h"
 
 @interface Parlance : NSObject
 
