@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D46AD2AB16DC46AD00203DD7 /* NSString+Parlance.m in Sources */ = {isa = PBXBuildFile; fileRef = D46AD2AA16DC46AD00203DD7 /* NSString+Parlance.m */; };
 		D4CAB8E816DB15E7004D7DA3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CAB8E716DB15E7004D7DA3 /* Cocoa.framework */; };
 		D4CAB8F216DB15E7004D7DA3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4CAB8F016DB15E7004D7DA3 /* InfoPlist.strings */; };
 		D4CAB8F416DB15E7004D7DA3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CAB8F316DB15E7004D7DA3 /* main.m */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D46AD2A916DC46AD00203DD7 /* NSString+Parlance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Parlance.h"; sourceTree = "<group>"; };
+		D46AD2AA16DC46AD00203DD7 /* NSString+Parlance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Parlance.m"; sourceTree = "<group>"; };
 		D4CAB8E416DB15E7004D7DA3 /* Parlance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parlance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4CAB8E716DB15E7004D7DA3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D4CAB8EA16DB15E7004D7DA3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -91,6 +94,8 @@
 				D4CAB8EE16DB15E7004D7DA3 /* Supporting Files */,
 				D4CAB90416DB160E004D7DA3 /* Parlance.h */,
 				D4CAB90516DB160E004D7DA3 /* Parlance.m */,
+				D46AD2A916DC46AD00203DD7 /* NSString+Parlance.h */,
+				D46AD2AA16DC46AD00203DD7 /* NSString+Parlance.m */,
 			);
 			path = Parlance;
 			sourceTree = "<group>";
@@ -174,6 +179,7 @@
 				D4CAB8F416DB15E7004D7DA3 /* main.m in Sources */,
 				D4CAB8FB16DB15E7004D7DA3 /* AppDelegate.m in Sources */,
 				D4CAB90616DB160E004D7DA3 /* Parlance.m in Sources */,
+				D46AD2AB16DC46AD00203DD7 /* NSString+Parlance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +315,7 @@
 				D4CAB90316DB15E7004D7DA3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
