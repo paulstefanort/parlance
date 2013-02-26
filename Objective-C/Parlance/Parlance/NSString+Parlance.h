@@ -10,4 +10,7 @@
 
 @interface NSString (Parlance)
 
+- (bool)containsString:(NSString *)string;
+- (NSString *)cleanup;
+
 @end
