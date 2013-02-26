@@ -95,6 +95,23 @@
                 }
             }
         }
+        
+        // process consonant clusters third
+        for (NSString *consonantCluster in consonantClusters) {
+            if ([processedWordStructure containsString:consonantCluster]) {
+                if ([processedConsonantClusters objectForKey:consonantCluster]) {
+                    // increase consonant cluster count
+                    NSMutableDictionary *processedConsonantCluster = [processedConsonantClusters objectForKey:consonantCluster];
+                    NSNumber *consonantClusterCount = [processedConsonantCluster objectForKey:@"count"];
+                    [processedConsonantCluster setObject:[NSNumber numberWithInt:[consonantClusterCount intValue] + 1] forKey:@"count"];
+                    [processedConsonantClusters setObject:processedConsonantCluster forKey:consonantCluster];
+                } else {
+                    // record first instance of consonant cluster
+                    NSMutableDictionary *processedConsonantCluster = [NSMutableDictionary dictionaryWithDictionary:@{@"consonantCluster": consonantCluster, @"count": @1}];
+                    [processedConsonantClusters setObject:processedConsonantCluster forKey:consonantCluster];
+                }
+            }
+        }
     }
 }
 
