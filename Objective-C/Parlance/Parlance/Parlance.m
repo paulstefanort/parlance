@@ -78,6 +78,23 @@
                 }
             }
         }
+        
+        // process vowels seocnd
+        for (NSString *vowel in vowels) {
+            if ([processedWordStructure containsString:vowel]) {
+                if ([processedVowels objectForKey:vowel]) {
+                    // increase vowel count
+                    NSMutableDictionary *processedVowel = [processedVowels objectForKey:vowel];
+                    NSNumber *vowelCount = [processedVowel objectForKey:@"count"];
+                    [processedVowel setObject:[NSNumber numberWithInt:[vowelCount intValue] + 1] forKey:@"count"];
+                    [processedVowels setObject:processedVowel forKey:vowel];
+                } else {
+                    // record first instance of vowel
+                    NSMutableDictionary *processedVowel = [NSMutableDictionary dictionaryWithDictionary:@{@"vowel": vowel, @"count": @1}];
+                    [processedVowels setObject:processedVowel forKey:processedVowel];
+                }
+            }
+        }
     }
 }
 
