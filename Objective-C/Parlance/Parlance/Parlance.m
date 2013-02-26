@@ -181,6 +181,37 @@
     for (NSDictionary *letter in sortedLetters) {
         [letters setObject:letter forKey:[letter objectForKey:@"letter"]];
     }
+    
+    // sort words in descending order of frequency
+    NSArray *sortedProcessedWords = [[processedWords allValues] sortedArrayUsingComparator:^(NSDictionary *a, NSDictionary *b) {
+        NSNumber *first = [a objectForKey:@"count"];
+        NSNumber *second = [b objectForKey:@"count"];
+        return [first compare:second];
+    }];
+    processedWords = [NSMutableDictionary new];
+    for (NSDictionary *processedWord in sortedProcessedWords) {
+        [processedWords setObject:processedWord forKey:[processedWord objectForKey:@"word"]];
+    }
+    
+    NSArray *sortedPermittedWords = [[permittedWords allValues] sortedArrayUsingComparator:^(NSDictionary *a, NSDictionary *b) {
+        NSNumber *first = [a objectForKey:@"count"];
+        NSNumber *second = [b objectForKey:@"count"];
+        return [first compare:second];
+    }];
+    permittedWords = [NSMutableDictionary new];
+    for (NSDictionary *permittedWord in sortedPermittedWords) {
+        [permittedWords setObject:permittedWord forKey:[permittedWord objectForKey:@"word"]];
+    }
+    
+    NSArray *sortedDisallowedWords = [[disallowedWords allValues] sortedArrayUsingComparator:^(NSDictionary *a, NSDictionary *b) {
+        NSNumber *first = [a objectForKey:@"count"];
+        NSNumber *second = [b objectForKey:@"count"];
+        return [first compare:second];
+    }];
+    disallowedWords = [NSMutableDictionary new];
+    for (NSDictionary *disallowedWord in sortedDisallowedWords) {
+        [disallowedWords setObject:disallowedWord forKey:[disallowedWord objectForKey:@"word"]];
+    }
 }
 
 - (NSDictionary *)processedWords {
