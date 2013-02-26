@@ -129,6 +129,19 @@
                 }
             }
         }
+        
+        // process word counts
+        if ([processedWords objectForKey:rawWord]) {
+            // increase word count
+            NSMutableDictionary *processedWord = [processedWords objectForKey:rawWord];
+            NSNumber *processedWordCount = [processedWord objectForKey:@"count"];
+            [processedWord setObject:[NSNumber numberWithInt:[processedWordCount intValue] + 1] forKey:rawWord];
+            [processedWords setObject:processedWord forKey:rawWord];
+        } else {
+            // record first instance of word
+            NSMutableDictionary *processedWord = [NSMutableDictionary dictionaryWithDictionary:@{@"word": rawWord, @"count": @1, @"structure": originalProcessedWordStructure}];
+            [processedWords setObject:processedWord forKey:rawWord];
+        }
     }
 }
 
