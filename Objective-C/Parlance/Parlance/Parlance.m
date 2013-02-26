@@ -170,6 +170,17 @@
             }
         }
     }
+    
+    // sort letters in descending order of frequency
+    NSArray *sortedLetters = [[letters allValues] sortedArrayUsingComparator:^(NSDictionary *a, NSDictionary *b) {
+        NSNumber *first = [a objectForKey:@"count"];
+        NSNumber *second = [b objectForKey:@"count"];
+        return [first compare:second];
+    }];
+    letters = [NSMutableDictionary new];
+    for (NSDictionary *letter in sortedLetters) {
+        [letters setObject:letter forKey:[letter objectForKey:@"letter"]];
+    }
 }
 
 - (NSDictionary *)processedWords {
