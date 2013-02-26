@@ -181,7 +181,7 @@
     wordStructure = [wordStructure cleanup];
     
     // loop through fragments
-    NSMutableArray *wordFragments = [wordStructure componentsSeparatedByString:@"+"];
+    NSMutableArray *wordFragments = [NSMutableArray arrayWithArray:[wordStructure componentsSeparatedByString:@"+"]];
     for (int i = 0; i < wordFragments.count; i++) {
         NSString *wordFragment = [wordFragments objectAtIndex:i];
         // skip if fragment matches vowel cluster
