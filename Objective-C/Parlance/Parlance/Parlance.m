@@ -142,6 +142,33 @@
             NSMutableDictionary *processedWord = [NSMutableDictionary dictionaryWithDictionary:@{@"word": rawWord, @"count": @1, @"structure": originalProcessedWordStructure}];
             [processedWords setObject:processedWord forKey:rawWord];
         }
+        
+        // process allowed and disallowed words
+        if ([allowedWords containsObject:rawWord]) {
+            if ([permittedWords objectForKey:rawWord]) {
+                // increase permitted word count
+                NSMutableDictionary *permittedWord = [permittedWords objectForKey:rawWord];
+                NSNumber *permittedWordCount = [permittedWord objectForKey:@"count"];
+                [permittedWord setObject:[NSNumber numberWithInt:[permittedWordCount intValue] + 1] forKey:@"count"];
+                [permittedWords setObject:permittedWord forKey:rawWord];
+            } else {
+                // record first instance of permitted word
+                NSMutableDictionary *permittedWord = [NSMutableDictionary dictionaryWithDictionary:@{@"word": rawWord, @"count": @1, @"structure": originalProcessedWordStructure}];
+                [permittedWords setObject:permittedWord forKey:rawWord];
+            }
+        } else {
+            if ([disallowedWords objectForKey:rawWord]) {
+                // increase disallowed word count
+                NSMutableDictionary *disallowedWord = [disallowedWords objectForKey:rawWord];
+                NSNumber *disallowedWordCount = [disallowedWord objectForKey:@"count"];
+                [disallowedWord setObject:[NSNumber numberWithInt:[disallowedWordCount intValue] + 1] forKey:@"count"];
+                [disallowedWords setObject:disallowedWord forKey:rawWord];
+            } else {
+                // record first instance of disallowed word
+                NSMutableDictionary *disallowedWord = [NSMutableDictionary dictionaryWithDictionary:@{@"word": rawWord, @"count": @1, @"structure": originalProcessedWordStructure}];
+                [disallowedWords setObject:disallowedWord forKey:rawWord];
+            }
+        }
     }
 }
 
