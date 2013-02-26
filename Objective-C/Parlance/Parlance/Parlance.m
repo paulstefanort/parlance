@@ -112,6 +112,23 @@
                 }
             }
         }
+        
+        // process consonants fourth
+        for (NSString *consonant in consonants) {
+            if ([processedWordStructure containsString:consonant]) {
+                if ([processedConsonants objectForKey:consonant]) {
+                    // increase consonant count
+                    NSMutableDictionary *processedConsonant = [processedConsonants objectForKey:consonant];
+                    NSNumber *consonantCount = [processedConsonant objectForKey:@"count"];
+                    [processedConsonant setObject:[NSNumber numberWithInt:[consonantCount intValue] + 1] forKey:@"count"];
+                    [processedConsonants setObject:processedConsonant forKey:consonant];
+                } else {
+                    // record first instance of consonant
+                    NSMutableDictionary *processedConsonant = [NSMutableDictionary dictionaryWithDictionary:@{@"consonant": consonant, @"count": @1}];
+                    [processedConsonants setObject:processedConsonant forKey:consonant];
+                }
+            }
+        }
     }
 }
 
