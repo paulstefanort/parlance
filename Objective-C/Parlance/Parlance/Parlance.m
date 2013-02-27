@@ -245,6 +245,17 @@
     for (NSDictionary *processedConsonant in sortedProcessedConsonants) {
         [processedConsonants setObject:processedConsonant forKey:[processedConsonant objectForKey:@"consonant"]];
     }
+    
+    // sort consonant clusters in descending order of frequency
+    NSArray *sortedProcessedConsonantClusters = [[processedConsonantClusters allValues] sortedArrayUsingComparator:^(NSDictionary *a, NSDictionary *b) {
+        NSNumber *first = [a objectForKey:@"count"];
+        NSNumber *second = [b objectForKey:@"count"];
+        return [first compare:second];
+    }];
+    processedConsonantClusters = [NSMutableDictionary new];
+    for (NSDictionary *processedConsonantCluster in sortedProcessedConsonantClusters) {
+        [processedConsonantClusters setObject:processedConsonantCluster forKey:[processedConsonantCluster objectForKey:@"consonantCluster"]];
+    }
 }
 
 - (NSDictionary *)processedWords {
