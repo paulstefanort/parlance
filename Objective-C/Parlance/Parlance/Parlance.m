@@ -223,6 +223,17 @@
     for (NSDictionary *processedVowel in sortedProcessedVowels) {
         [processedVowels setObject:processedVowel forKey:[processedVowel objectForKey:@"vowel"]];
     }
+    
+    // sort vowel clusters in descending order of frequency
+    NSArray *sortedProcessedVowelClusters = [[processedVowelClusters allValues] sortedArrayUsingComparator:^(NSDictionary *a, NSDictionary *b) {
+        NSNumber *first = [a objectForKey:@"count"];
+        NSNumber *second = [b objectForKey:@"count"];
+        return [first compare:second];
+    }];
+    processedVowelClusters = [NSMutableDictionary new];
+    for (NSDictionary *processedVowelCluster in sortedProcessedVowelClusters) {
+        [processedVowelClusters setObject:processedVowelCluster forKey:[processedVowelCluster objectForKey:@"vowelCluster"]];
+    }
 }
 
 - (NSDictionary *)processedWords {
