@@ -212,6 +212,17 @@
     for (NSDictionary *disallowedWord in sortedDisallowedWords) {
         [disallowedWords setObject:disallowedWord forKey:[disallowedWord objectForKey:@"word"]];
     }
+    
+    // sort vowels in descending order of frequency
+    NSArray *sortedProcessedVowels = [[processedVowels allValues] sortedArrayUsingComparator:^(NSDictionary *a, NSDictionary *b) {
+        NSNumber *first = [a objectForKey:@"count"];
+        NSNumber *second = [b objectForKey:@"count"];
+        return [first compare:second];
+    }];
+    processedVowels = [NSMutableDictionary new];
+    for (NSDictionary *processedVowel in sortedProcessedVowels) {
+        [processedVowels setObject:processedVowel forKey:[processedVowel objectForKey:@"vowel"]];
+    }
 }
 
 - (NSDictionary *)processedWords {
