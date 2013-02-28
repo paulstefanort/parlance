@@ -178,7 +178,8 @@
         return [first compare:second];
     }];
     letters = [NSMutableDictionary new];
-    for (NSDictionary *letter in sortedLetters) {
+    NSEnumerator *lettersEnumerator = [sortedLetters reverseObjectEnumerator];
+    for (NSDictionary *letter in lettersEnumerator) {
         [letters setObject:letter forKey:[letter objectForKey:@"letter"]];
     }
     
@@ -189,7 +190,8 @@
         return [first compare:second];
     }];
     processedWords = [NSMutableDictionary new];
-    for (NSDictionary *processedWord in sortedProcessedWords) {
+    NSEnumerator *processedWordsEnumerator = [sortedProcessedWords reverseObjectEnumerator];
+    for (NSDictionary *processedWord in processedWordsEnumerator) {
         [processedWords setObject:processedWord forKey:[processedWord objectForKey:@"word"]];
     }
     
@@ -199,7 +201,8 @@
         return [first compare:second];
     }];
     permittedWords = [NSMutableDictionary new];
-    for (NSDictionary *permittedWord in sortedPermittedWords) {
+    NSEnumerator *permittedWordsEnumerator = [sortedPermittedWords reverseObjectEnumerator];
+    for (NSDictionary *permittedWord in permittedWordsEnumerator) {
         [permittedWords setObject:permittedWord forKey:[permittedWord objectForKey:@"word"]];
     }
     
@@ -209,7 +212,8 @@
         return [first compare:second];
     }];
     disallowedWords = [NSMutableDictionary new];
-    for (NSDictionary *disallowedWord in sortedDisallowedWords) {
+    NSEnumerator *disallowedWordsEnumerator = [sortedDisallowedWords reverseObjectEnumerator];
+    for (NSDictionary *disallowedWord in disallowedWordsEnumerator) {
         [disallowedWords setObject:disallowedWord forKey:[disallowedWord objectForKey:@"word"]];
     }
     
@@ -220,7 +224,8 @@
         return [first compare:second];
     }];
     processedVowels = [NSMutableDictionary new];
-    for (NSDictionary *processedVowel in sortedProcessedVowels) {
+    NSEnumerator *processedVowelsEnumerator = [sortedProcessedVowels reverseObjectEnumerator];
+    for (NSDictionary *processedVowel in processedVowelsEnumerator) {
         [processedVowels setObject:processedVowel forKey:[processedVowel objectForKey:@"vowel"]];
     }
     
@@ -231,7 +236,8 @@
         return [first compare:second];
     }];
     processedVowelClusters = [NSMutableDictionary new];
-    for (NSDictionary *processedVowelCluster in sortedProcessedVowelClusters) {
+    NSEnumerator *processedVowelClustersEnumerator = [sortedProcessedVowelClusters reverseObjectEnumerator];
+    for (NSDictionary *processedVowelCluster in processedVowelClustersEnumerator) {
         [processedVowelClusters setObject:processedVowelCluster forKey:[processedVowelCluster objectForKey:@"vowelCluster"]];
     }
     
@@ -242,7 +248,8 @@
         return [first compare:second];
     }];
     processedConsonants = [NSMutableDictionary new];
-    for (NSDictionary *processedConsonant in sortedProcessedConsonants) {
+    NSEnumerator *processedConsonantsEnumerator = [sortedProcessedConsonants reverseObjectEnumerator];
+    for (NSDictionary *processedConsonant in processedConsonantsEnumerator) {
         [processedConsonants setObject:processedConsonant forKey:[processedConsonant objectForKey:@"consonant"]];
     }
     
@@ -253,7 +260,8 @@
         return [first compare:second];
     }];
     processedConsonantClusters = [NSMutableDictionary new];
-    for (NSDictionary *processedConsonantCluster in sortedProcessedConsonantClusters) {
+    NSEnumerator *processedConsonantClusterEnumerator = [sortedProcessedConsonantClusters reverseObjectEnumerator];
+    for (NSDictionary *processedConsonantCluster in processedConsonantClusterEnumerator) {
         [processedConsonantClusters setObject:processedConsonantCluster forKey:[processedConsonantCluster objectForKey:@"consonantCluster"]];
     }
     
