@@ -312,42 +312,6 @@
     }
 }
 
-- (NSDictionary *)processedWords {
-    
-}
-
-- (NSDictionary *)permittedWords {
-    
-}
-
-- (NSDictionary *)disallowedWords {
-    
-}
-
-- (NSDictionary *)processedVowels {
-    
-}
-
-- (NSDictionary *)processedVowelClusters {
-    
-}
-
-- (NSDictionary *)processedConsonants {
-    
-}
-
-- (NSDictionary *)processedConsonantClusters {
-    
-}
-
-- (NSDictionary *)letters {
-    
-}
-
-- (NSDictionary *)processedChunks {
-    
-}
-
 - (NSString *)structureForWord:(NSString *)word {
     NSString *wordStructure = word;
     // process vowel clusters
