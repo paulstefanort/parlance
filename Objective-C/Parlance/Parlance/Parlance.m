@@ -290,6 +290,18 @@
         NSDictionary *processedChunk = @{@"chunk": consonantCluster, @"count": count};
         [processedChunks setObject:processedChunk forKey:consonantCluster];
     }
+    
+    // sort processed chunks in descending order of frequency
+    NSArray *sortedProcessedChunks = [[processedChunks allValues] sortedArrayUsingComparator:^(NSDictionary *a, NSDictionary *b) {
+        NSNumber *first = [a objectForKey:@"count"];
+        NSNumber *second = [b objectForKey:@"count"];
+        return [first compare:second];
+    }];
+    processedChunks = [NSMutableDictionary new];
+    NSEnumerator *processedChunksEnumerator = [sortedProcessedChunks reverseObjectEnumerator];
+    for (NSDictionary *processedChunk in processedChunksEnumerator) {
+        [processedChunks setObject:processedChunk forKey:[processedChunk objectForKey:@"chunk"]];
+    }
 }
 
 - (NSDictionary *)processedWords {
