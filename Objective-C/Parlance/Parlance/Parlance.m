@@ -256,6 +256,40 @@
     for (NSDictionary *processedConsonantCluster in sortedProcessedConsonantClusters) {
         [processedConsonantClusters setObject:processedConsonantCluster forKey:[processedConsonantCluster objectForKey:@"consonantCluster"]];
     }
+    
+    // build master list of fragments
+    // vowels
+    for (id key in processedVowels) {
+        NSDictionary *processedVowel = [processedVowels objectForKey:key];
+        NSString *vowel = [processedVowel objectForKey:@"vowel"];
+        NSNumber *count = [processedVowel objectForKey:@"count"];
+        NSDictionary *processedChunk = @{@"chunk": vowel, @"count": count};
+        [processedChunks setObject:processedChunk forKey:vowel];
+    }
+    // vowel clusters
+    for (id key in processedVowelClusters) {
+        NSDictionary *processedVowelCluster = [processedVowelClusters objectForKey:key];
+        NSString *vowelCluster = [processedVowelCluster objectForKey:@"vowelCluster"];
+        NSNumber *count = [processedVowelCluster objectForKey:@"count"];
+        NSDictionary *processedChunk = @{@"chunk": vowelCluster, @"count": count};
+        [processedChunks setObject:processedChunk forKey:vowelCluster];
+    }
+    // consonants
+    for (id key in processedConsonants) {
+        NSDictionary *processedConsonant = [processedConsonants objectForKey:key];
+        NSString *consonant = [processedConsonant objectForKey:@"consonant"];
+        NSNumber *count = [processedConsonant objectForKey:@"count"];
+        NSDictionary *processedChunk = @{@"chunk": consonant, @"count": count};
+        [processedChunks setObject:processedChunk forKey:consonant];
+    }
+    // consonant clusters
+    for (id key in processedConsonantClusters) {
+        NSDictionary *processedConsonantCluster = [processedConsonantClusters objectForKey:key];
+        NSString *consonantCluster = [processedConsonantCluster objectForKey:@"consonantCluster"];
+        NSNumber *count = [processedConsonantCluster objectForKey:@"count"];
+        NSDictionary *processedChunk = @{@"chunk": consonantCluster, @"count": count};
+        [processedChunks setObject:processedChunk forKey:consonantCluster];
+    }
 }
 
 - (NSDictionary *)processedWords {
