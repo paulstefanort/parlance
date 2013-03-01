@@ -79,7 +79,7 @@
             }
         }
         
-        // process vowels seocnd
+        // process vowels second
         for (NSString *vowel in vowels) {
             if ([processedWordStructure containsString:vowel]) {
                 if ([processedVowels objectForKey:vowel]) {
