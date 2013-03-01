@@ -310,6 +310,9 @@
     for (NSDictionary *processedChunk in processedChunksEnumerator) {
         [processedChunks setObject:processedChunk forKey:[processedChunk objectForKey:@"chunk"]];
     }
+    
+    // remove duplicates from allowed words
+    allowedWords = [[NSSet setWithArray:allowedWords] allObjects];
 }
 
 - (NSString *)structureForWord:(NSString *)word {
