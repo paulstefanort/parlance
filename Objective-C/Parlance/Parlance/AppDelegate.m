@@ -44,6 +44,15 @@
         [vowelClusters setObject:vowelCluster atIndexedSubscript:i];
     }
     [parlance setVowelClusters:vowelClusters];
+
+    NSString *consonantsString = [consonantsTextField stringValue];
+    NSMutableArray *consonants = [NSMutableArray arrayWithArray:[consonantsString componentsSeparatedByString:@","]];
+    for (int i = 0; i < consonants.count; i++) {
+        NSMutableString *consonant = [NSMutableString stringWithString:[consonants objectAtIndex:i]];
+        consonant = [NSMutableString stringWithString:[consonant stringByReplacingOccurrencesOfString:@" " withString:@""]];
+        [consonants setObject:consonant atIndexedSubscript:i];
+    }
+    [parlance setConsonants:consonants];
     
     NSLog(@"/processedButtonPressed");
 }
