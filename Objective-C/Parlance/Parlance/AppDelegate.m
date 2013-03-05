@@ -63,6 +63,15 @@
     }
     [parlance setConsonantClusters:consonantClusters];
     
+    NSString *punctuationMarksString = [punctuationMarksTextField stringValue];
+    NSMutableArray *punctuationMarks = [NSMutableArray arrayWithArray:[punctuationMarksString componentsSeparatedByString:@","]];
+    for (int i = 0; i < punctuationMarks.count; i++) {
+        NSMutableString *punctuationMark = [NSMutableString stringWithString:[punctuationMarks objectAtIndex:i]];
+        punctuationMark = [NSMutableString stringWithString:[punctuationMark stringByReplacingOccurrencesOfString:@" " withString:@""]];
+        [punctuationMarks setObject:punctuationMark atIndexedSubscript:i];
+    }
+    [parlance setPunctuationMarks:punctuationMarks];
+    
     NSLog(@"/processedButtonPressed");
 }
 
