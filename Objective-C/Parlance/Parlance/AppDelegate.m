@@ -72,6 +72,15 @@
     }
     [parlance setPunctuationMarks:punctuationMarks];
     
+    NSString *allowedWordsString = [allowedWordsTextField stringValue];
+    NSMutableArray *allowedWords = [NSMutableArray arrayWithArray:[allowedWordsString componentsSeparatedByString:@","]];
+    for (int i = 0; i < allowedWords.count; i++) {
+        NSMutableString *allowedWord = [NSMutableString stringWithString:[allowedWords objectAtIndex:i]];
+        allowedWord = [NSMutableString stringWithString:[allowedWord stringByReplacingOccurrencesOfString:@" " withString:@""]];
+        [allowedWords setObject:allowedWord atIndexedSubscript:i];
+    }
+    [parlance setAllowedWords:allowedWords];
+    
     NSLog(@"/processedButtonPressed");
 }
 
