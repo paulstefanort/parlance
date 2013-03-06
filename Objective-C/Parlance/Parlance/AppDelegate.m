@@ -81,6 +81,9 @@
     }
     [parlance setAllowedWords:allowedWords];
     
+    NSString *text = [textTextField stringValue];
+    [parlance processText:text];
+    
     NSLog(@"/processedButtonPressed");
 }
 

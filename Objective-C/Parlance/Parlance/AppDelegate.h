@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSCollectionViewDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTextField *vowelsTextField;
