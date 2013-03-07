@@ -18,5 +18,6 @@
 @property (weak) IBOutlet NSTextField *punctuationMarksTextField;
 @property (weak) IBOutlet NSTextField *allowedWordsTextField;
 @property (weak) IBOutlet NSTextField *textTextField;
+@property (weak) IBOutlet NSCollectionView *collectionView;
 
 @end

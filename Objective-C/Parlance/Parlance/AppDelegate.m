@@ -16,7 +16,7 @@
 @implementation AppDelegate
 
 @synthesize parlance;
-@synthesize vowelsTextField, vowelClustersTextField, consonantsTextField, consonantClustersTextField, punctuationMarksTextField, allowedWordsTextField, textTextField;
+@synthesize vowelsTextField, vowelClustersTextField, consonantsTextField, consonantClustersTextField, punctuationMarksTextField, allowedWordsTextField, textTextField, collectionView;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -83,6 +83,8 @@
     
     NSString *text = [textTextField stringValue];
     [parlance processText:text];
+    
+    // TODO: update collectionView
     
     NSLog(@"/processedButtonPressed");
 }

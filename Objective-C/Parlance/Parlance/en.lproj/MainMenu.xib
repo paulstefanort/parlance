@@ -1652,7 +1652,6 @@
 							<string key="NSFrame">{{18, 87}, {82, 32}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="877610174">
@@ -1764,7 +1763,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="957770244"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1280, 778}}</string>
+				<string key="NSScreenRect">{{0, 0}, {2560, 1418}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
@@ -2526,6 +2525,14 @@
 						<reference key="destination" ref="770106596"/>
 					</object>
 					<int key="connectionID">671</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">collectionView</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="358654603"/>
+					</object>
+					<int key="connectionID">697</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -5032,15 +5039,27 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">696</int>
+			<int key="maxID">697</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">AppDelegate</string>
 					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">processButtonPressed:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">processButtonPressed:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">processButtonPressed:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="allowedWordsTextField">NSTextField</string>
+						<string key="collectionView">NSCollectionView</string>
 						<string key="consonantClustersTextField">NSTextField</string>
 						<string key="consonantsTextField">NSTextField</string>
 						<string key="punctuationMarksTextField">NSTextField</string>
@@ -5053,6 +5072,10 @@
 						<object class="IBToOneOutletInfo" key="allowedWordsTextField">
 							<string key="name">allowedWordsTextField</string>
 							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="collectionView">
+							<string key="name">collectionView</string>
+							<string key="candidateClassName">NSCollectionView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="consonantClustersTextField">
 							<string key="name">consonantClustersTextField</string>
