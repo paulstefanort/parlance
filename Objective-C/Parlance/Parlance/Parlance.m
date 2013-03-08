@@ -32,6 +32,9 @@
 
 - (void)processText:(NSString *)newText {
     text = newText;
+    for (NSString *punctuationMark in punctuationMarks) {
+        text = [text stringByReplacingOccurrencesOfString:punctuationMark withString:@""];
+    }
     rawWords = [text componentsSeparatedByString:@" "];
     processedWords = [NSMutableDictionary new];
     permittedWords = [NSMutableDictionary new];
