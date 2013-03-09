@@ -64,25 +64,17 @@
     [parlance setConsonantClusters:consonantClusters];
     
     NSString *punctuationMarksString = [punctuationMarksTextField stringValue];
-    NSMutableArray *punctuationMarks = [NSMutableArray arrayWithArray:[punctuationMarksString componentsSeparatedByString:@","]];
-    for (int i = 0; i < punctuationMarks.count; i++) {
-        NSMutableString *punctuationMark = [NSMutableString stringWithString:[punctuationMarks objectAtIndex:i]];
-        punctuationMark = [NSMutableString stringWithString:[punctuationMark stringByReplacingOccurrencesOfString:@" " withString:@""]];
-        [punctuationMarks setObject:punctuationMark atIndexedSubscript:i];
-    }
+    NSMutableArray *punctuationMarks = [NSMutableArray arrayWithArray:[punctuationMarksString componentsSeparatedByString:@" "]];
     [parlance setPunctuationMarks:punctuationMarks];
     
     NSString *allowedWordsString = [allowedWordsTextField stringValue];
-    NSMutableArray *allowedWords = [NSMutableArray arrayWithArray:[allowedWordsString componentsSeparatedByString:@","]];
-    for (int i = 0; i < allowedWords.count; i++) {
-        NSMutableString *allowedWord = [NSMutableString stringWithString:[allowedWords objectAtIndex:i]];
-        allowedWord = [NSMutableString stringWithString:[allowedWord stringByReplacingOccurrencesOfString:@" " withString:@""]];
-        [allowedWords setObject:allowedWord atIndexedSubscript:i];
-    }
+    NSMutableArray *allowedWords = [NSMutableArray arrayWithArray:[allowedWordsString componentsSeparatedByString:@" "]];
     [parlance setAllowedWords:allowedWords];
     
     NSString *text = [textTextField stringValue];
     [parlance processText:text];
+    
+    NSLog(@"processedVowels: %@", parlance.processedVowels);
     
     // TODO: update collectionView
     
