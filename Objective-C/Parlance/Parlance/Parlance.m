@@ -20,7 +20,7 @@
 @property (strong) NSMutableDictionary *processedWords;
 @property (strong) NSMutableDictionary *permittedWords;
 @property (strong) NSMutableDictionary *disallowedWords;
-@property (strong) NSArray *rawWords;
+@property (strong) NSMutableArray *rawWords;
 
 @end
 
@@ -35,7 +35,15 @@
     for (NSString *punctuationMark in punctuationMarks) {
         text = [text stringByReplacingOccurrencesOfString:punctuationMark withString:@""];
     }
-    rawWords = [text componentsSeparatedByString:@" "];
+    rawWords = [NSMutableArray arrayWithArray:[text componentsSeparatedByString:@" "]];
+    for (int i = 0; i < rawWords.count; i++) {
+        NSString *rawWord = [rawWords objectAtIndex:i];
+        rawWord = [rawWord lowercaseString];
+        for (NSString *punctuationMark in punctuationMarks) {
+            rawWord = [rawWord stringByReplacingOccurrencesOfString:punctuationMark withString:@""];
+        }
+        [rawWords setObject:rawWord atIndexedSubscript:i];
+    }
     processedWords = [NSMutableDictionary new];
     permittedWords = [NSMutableDictionary new];
     disallowedWords = [NSMutableDictionary new];
