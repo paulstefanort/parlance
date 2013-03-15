@@ -28,7 +28,7 @@
     NSLog(@"processedButtonPressed");
     
     NSString *vowelsString = [vowelsTextField stringValue];
-    NSMutableArray *vowels = [NSMutableArray arrayWithArray:[vowelsString componentsSeparatedByString:@","]];
+    NSMutableArray *vowels = [NSMutableArray arrayWithArray:[vowelsString componentsSeparatedByString:@" "]];
     for (int i = 0; i < vowels.count; i++) {
         NSMutableString *vowel = [NSMutableString stringWithString:[vowels objectAtIndex:i]];
         vowel = [NSMutableString stringWithString:[vowel stringByReplacingOccurrencesOfString:@" " withString:@""]];
@@ -37,7 +37,7 @@
     [parlance setVowels:vowels];
     
     NSString *vowelClustersString = [vowelClustersTextField stringValue];
-    NSMutableArray *vowelClusters = [NSMutableArray arrayWithArray:[vowelClustersString componentsSeparatedByString:@","]];
+    NSMutableArray *vowelClusters = [NSMutableArray arrayWithArray:[vowelClustersString componentsSeparatedByString:@" "]];
     for (int i = 0; i < vowelClusters.count; i++) {
         NSMutableString *vowelCluster = [NSMutableString stringWithString:[vowelClusters objectAtIndex:i]];
         vowelCluster = [NSMutableString stringWithString:[vowelCluster stringByReplacingOccurrencesOfString:@" " withString:@""]];
@@ -46,7 +46,7 @@
     [parlance setVowelClusters:vowelClusters];
 
     NSString *consonantsString = [consonantsTextField stringValue];
-    NSMutableArray *consonants = [NSMutableArray arrayWithArray:[consonantsString componentsSeparatedByString:@","]];
+    NSMutableArray *consonants = [NSMutableArray arrayWithArray:[consonantsString componentsSeparatedByString:@" "]];
     for (int i = 0; i < consonants.count; i++) {
         NSMutableString *consonant = [NSMutableString stringWithString:[consonants objectAtIndex:i]];
         consonant = [NSMutableString stringWithString:[consonant stringByReplacingOccurrencesOfString:@" " withString:@""]];
@@ -55,7 +55,7 @@
     [parlance setConsonants:consonants];
     
     NSString *consonantClustersString = [consonantClustersTextField stringValue];
-    NSMutableArray *consonantClusters = [NSMutableArray arrayWithArray:[consonantClustersString componentsSeparatedByString:@","]];
+    NSMutableArray *consonantClusters = [NSMutableArray arrayWithArray:[consonantClustersString componentsSeparatedByString:@" "]];
     for (int i = 0; i < consonantClusters.count; i++) {
         NSMutableString *consonantCluster = [NSMutableString stringWithString:[consonantClusters objectAtIndex:i]];
         consonantCluster = [NSMutableString stringWithString:[consonantCluster stringByReplacingOccurrencesOfString:@" " withString:@""]];
@@ -74,7 +74,11 @@
     NSString *text = [textTextField stringValue];
     [parlance processText:text];
     
+    NSLog(@"letters: %@", parlance.letters);
+    NSLog(@"processedVowelClusters: %@", parlance.processedVowelClusters);
     NSLog(@"processedVowels: %@", parlance.processedVowels);
+    NSLog(@"processedConsonantClusters: %@", parlance.processedConsonantClusters);
+    NSLog(@"processedConsonants: %@", parlance.processedConsonants);
     
     // TODO: update collectionView
     
