@@ -44,6 +44,7 @@
         }
         [rawWords setObject:rawWord atIndexedSubscript:i];
     }
+    letters = [NSMutableDictionary new];
     processedWords = [NSMutableDictionary new];
     permittedWords = [NSMutableDictionary new];
     disallowedWords = [NSMutableDictionary new];
