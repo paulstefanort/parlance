@@ -35,6 +35,7 @@
     for (NSString *punctuationMark in punctuationMarks) {
         text = [text stringByReplacingOccurrencesOfString:punctuationMark withString:@""];
     }
+    text = [text stringByReplacingOccurrencesOfString:@"\n" withString:@""]; // remove newline
     rawWords = [NSMutableArray arrayWithArray:[text componentsSeparatedByString:@" "]];
     for (int i = 0; i < rawWords.count; i++) {
         NSString *rawWord = [rawWords objectAtIndex:i];
@@ -42,6 +43,7 @@
         for (NSString *punctuationMark in punctuationMarks) {
             rawWord = [rawWord stringByReplacingOccurrencesOfString:punctuationMark withString:@""];
         }
+        rawWord = [rawWord cleanup];
         [rawWords setObject:rawWord atIndexedSubscript:i];
     }
     letters = [NSMutableDictionary new];
