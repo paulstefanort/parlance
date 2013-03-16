@@ -79,6 +79,9 @@
     NSLog(@"processedVowels: %@", parlance.processedVowels);
     NSLog(@"processedConsonantClusters: %@", parlance.processedConsonantClusters);
     NSLog(@"processedConsonants: %@", parlance.processedConsonants);
+    NSLog(@"processedWords: %@", parlance.processedWords);
+    NSLog(@"permittedWords: %@", parlance.permittedWords);
+    NSLog(@"disallowedWords: %@", parlance.disallowedWords);
     
     // TODO: update collectionView
     
