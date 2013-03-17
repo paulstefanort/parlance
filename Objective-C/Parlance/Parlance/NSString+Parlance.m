@@ -25,7 +25,7 @@
         newString = [NSMutableString stringWithFormat:@"%@", [newString substringFromIndex:1]];
     }
     if ([newString hasSuffix:@"+"]) {
-        newString = [NSMutableString stringWithFormat:@"%@", [newString substringToIndex:[newString length] - 2]];
+        newString = [NSMutableString stringWithFormat:@"%@", [newString substringToIndex:[newString length] - 1]];
     }
     return newString;
 }
