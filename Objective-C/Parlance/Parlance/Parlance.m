@@ -347,11 +347,11 @@
         NSString *wordFragment = [wordFragments objectAtIndex:i];
         // skip if fragment matches vowel cluster
         if ([vowelClusters containsObject:wordFragment]) {
-            break;
+            continue;
         }
         // skip if fragment matches consonant cluster
         if ([consonantClusters containsObject:wordFragment]) {
-            break;
+            continue;
         }
         // otherwise divide fragment into vowels
         for (NSString *vowel in vowels) {
