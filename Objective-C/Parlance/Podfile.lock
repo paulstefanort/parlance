@@ -1,0 +1,14 @@
+
+PODS:
+- JSONKit (1.5pre)
+- Reachability (3.0.0)
+
+DEPENDENCIES:
+- JSONKit (~> 1.4)
+- Reachability (~> 3.0.0)
+
+SPEC CHECKSUMS:
+  JSONKit: 3d4708953ea7ae399a49777372d8b060a43ddd27
+  Reachability: 500bd76bf6cd8ff2c6fb715fc5f44ef6e4c024f2
+
+COCOAPODS: 0.16.4
