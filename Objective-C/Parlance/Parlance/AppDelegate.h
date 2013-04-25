@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSTableViewDelegate, NSTableViewDataSource>
 
+@property (strong) IBOutlet NSTableView *tableView;
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTextField *vowelsTextField;
 @property (weak) IBOutlet NSTextField *vowelClustersTextField;

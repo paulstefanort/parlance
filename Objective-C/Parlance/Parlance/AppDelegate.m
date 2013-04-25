@@ -15,7 +15,7 @@
 
 @implementation AppDelegate
 
-@synthesize parlance;
+@synthesize parlance, tableView;
 @synthesize vowelsTextField, vowelClustersTextField, consonantsTextField, consonantClustersTextField, punctuationMarksTextField, allowedWordsTextField, textTextField, collectionView;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -86,6 +86,14 @@
     // TODO: update collectionView
     
     NSLog(@"/processedButtonPressed");
+}
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
+    return 10;
+}
+
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    return @"Test";
 }
 
 @end
